@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-3/4">
+        <h1 id="titles" class="text-4xl font-bold text-gray-800 mb-4">Task Title</h1>
+        <p id="TaskID" class="text-gray-600 text-lg mb-4">ID: </p>
+        <div id="description" class="text-gray-700 text-lg mb-4">Task Description</div>
+        <div class="mt-6">
+            <a href="/" class="bg-blue-500 text-white px-6 py-2 rounded-full text-lg hover:bg-blue-600">Go to Home</a>
+            <a href="/add_task" class="bg-green-500 text-white px-6 py-2 rounded-full text-lg hover:bg-green-600 ml-4">Add New Task</a>
+        </div>
+        <div class="mt-6">
+            <input type="submit" value="Delete Task" id="deleteButton" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+            <input type="submit" value="Update Task" id="updateButton" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+
+        </div>
+    </div>
+    <script>
+        async function fetchTaskDetails() {
+            const id = window.location.pathname.split('/').pop();
+            try {
+                const response = await fetch(`/api/task/${id}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch task details');
+                }
+                const data = await response.json();
+                document.getElementById('TaskID').textContent = `ID: ${data.t_id}`;
+                document.getElementById('titles').textContent = data.title;
+                console.log(data.title);
+                document.getElementById('description').textContent = data.desc;
+            } catch (error) {
+                console.error('Error fetching task details:', error);
+                document.body.innerHTML = '<p>Failed to load task details.</p>';
+            }
+        }
+
+        document.getElementById('deleteButton').addEventListener('click', async () => {
+    const id = window.location.pathname.split('/').pop();
+    console.log(id);
+    try {
+        const response = await fetch(`/api/delete/${id}`, { method: 'DELETE' });
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('Failed to delete task');
+            
+        }
+        if(response.ok){
+            const data=await response.json();
+            window.location.href = '/';
+        }
+       
+    } catch (error) {
+        console.error('Error deleting task:', error);
+        alert('Failed to delete task.');
+    }
+});
+        // document.getElementById('updateButton').addEventListener('click', async () => {
+        //     const id = window.location.pathname.split('/').pop();
+        //     try {
+        //         const response = await fetch(`/api/task/${id}`, { method: 'PUT' });
+        //         if (!response.ok) {
+        //             // throw new Error('Failed to update task');
+        //             window.location.href='add_task'
+        //         }
+        //         // window.location.href = '/add_task';
+
+        //     } catch (error) {
+        //         console.error('Error updating task:', error);
+        //         alert('Failed to update task.');
+        //     }
+        // });
+
+        document.addEventListener('DOMContentLoaded', fetchTaskDetails);
+    </script>
+</body>
+
+</html>

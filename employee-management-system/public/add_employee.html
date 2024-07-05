@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD A NEW EMPLOYEE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-900 flex items-center justify-center h-screen">
+    <div class= " w-full bg-green-400 p-8 rounded-lg shadow-lg w-1/2">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">ADD A NEW EMPLOYEE</h1>
+        <form id="employeeForm" action="/employee" method="POST">
+            <div class="mb-4">
+                <label for="EmployeeID" class="block text-gray-700">EMPLOYEE ID</label>
+                <input type="text" id="addEmployee" name="emp_id" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700">NAME</label>
+                <input type="text" id="name" name="emp_name" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="role" class="block text-gray-700">ROLE</label>
+                <input type="text" id="role" name="emp_role" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="dateOfJoin" class="block text-gray-700">DATE OF JOINING</label>
+                <input type="date" id="dateOfJoin" name="doj" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">SUBMIT</button>
+        </form>
+    </div>
+</body>
+
+</html>
