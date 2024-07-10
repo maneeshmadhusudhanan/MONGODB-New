@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vehicle management system</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-1/2">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">create a new vehicle management system</h1>
+        <form id="vehicleform" action="/vehicle" method="POST">
+            <div class="mb-4">
+                <label for="VehicleID" class="block text-gray-700">VehicleID</label>
+                <input type="text" id="VehicleID" name="VehicleID" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="Vehicle__owner_name" class="block text-gray-700">Vehicle__owner_name</label>
+                <input type="text" id="Vehicle__owner_name" name="Vehicle__owner_name" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="Service_no" class="block text-gray-700">Service_no</label>
+                <input type="number" id="Service_no" name="Service_no" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="Vehicle_type" class="block text-gray-700">Vehicle_type</label>
+                <input type="text" id="Vehicle_type" name="Vehicle_type" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="Service_given_date" class="block text-gray-700">Service_given_date</label>
+                <input type="date" id="Service_given_date" name="Service_given_date" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="Estimated_time" class="block text-gray-700">Estimated_time</label>
+                <input type="time" id="Estimated_time" name="Estimated_time" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="" class="block text-gray-700"></label>
+                <textarea id="Service_details" name="Service_details" rows="5" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>Service_details:</textarea>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

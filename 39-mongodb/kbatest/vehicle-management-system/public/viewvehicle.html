@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vehicle management system</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-3/4">
+        <p id="VehicleID" class="text-gray-600 text-lg mb-4">Vehicle ID no :</p>
+        <h1 id="Vehicle__owner_name" class="text- font-bold text-gray-800 mb-4">Vehicle__owner_name :</h1>
+        <p id="Service_no" class="number-gray-600 text-lg mb-4">Service_no :</p>
+        <div id="Vehicle_type" class="text-gray-700 text-lg">Vehicle_type :</div>
+        <p id=" Service_given_date" class="text-gray-600 text-lg mb-4"> Service_given_date :</p>
+        <p id="Estimated_time" class="text-gray-600 text-lg mb-4">Estimated_time</p>
+        <p id=" Service_details" class="text-gray-600 text-lg mb-4"> Service_details :</p>
+
+
+
+        <div class="mt-6">
+            <a href="/" class="bg-blue-500 text-white px-6 py-2 rounded-full text-lg hover:bg-blue-600">Go to Home</a>
+            <a href="/vehicle" class="bg-green-500 text-white px-6 py-2 rounded-full text-lg hover:bg-green-600 ml-4">Create New vehicle management system</a>
+        </div>
+    </div>
+    <script>
+        async function fetchVehicleDetails() {
+            const url = window.location.href;
+            console.log(url)
+            const id = window.location.pathname.split('/').pop()
+            try {
+                const response = await fetch(`/api/vehicle/${id}`);
+                console.log(response)
+                if (!response.ok) {
+                    throw new Error('Failed to fetch vehicle details');
+                }
+                const data = await response.json();
+                console.log(data)
+                // Display the vehicle details.
+                document.getElementById('VehicleID').textContent= data.VehicleID;
+                document.getElementById(' Vehicle__owner_name').textContent = data.Vehicle__owner_name;
+                document.getElementById('Service_no').textContent = `By ${data.Service_no}`;
+                document.getElementById('Vehicle_type').textContent = data.Vehicle_type;
+                ocument.getElementById('Service_given_date').textContent = data.Service_given_date;
+                ocument.getElementById('Estimated_time').textContent = data.Estimated_time;
+                ocument.getElementById('Service_details').textContent = data.Service_details;
+            } catch (error) {
+                console.error('Error fetching vehicle details:', error);
+                document.body.innerHTML = '<p>Failed to load vehicle details.</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchVehicleDetails);
+    </script>
+</body>
+
+</html>
